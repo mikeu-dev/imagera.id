@@ -1,8 +1,13 @@
-<script>
-  let { originalSize = 0, resultSize = 0 } = $props();
+<script lang="ts">
+  interface Props {
+    originalSize?: number;
+    resultSize?: number;
+  }
 
-  function formatBytes(bytes, decimals = 2) {
-    if (bytes === 0) return '0 Bytes';
+  let { originalSize = 0, resultSize = 0 }: Props = $props();
+
+  function formatBytes(bytes: number, decimals = 2) {
+    if (bytes <= 0) return '0 Bytes';
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];

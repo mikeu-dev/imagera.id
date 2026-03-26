@@ -8,7 +8,6 @@
     align?: 'left' | 'center' | 'right';
     children?: Snippet;
     class?: string;
-    class?: string;
   }
 
   let { 

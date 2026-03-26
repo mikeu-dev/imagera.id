@@ -1,17 +1,25 @@
 /**
  * Converts an image file to another format.
- * @param {File} file - The image file to convert.
- * @param {string} format - The output MIME type (e.g., 'image/jpeg', 'image/webp').
- * @returns {Promise<Blob>} - The converted image as a Blob.
+ * @param file - The image file to convert.
+ * @param format - The output MIME type (e.g., 'image/jpeg', 'image/webp').
+ * @returns The converted image as a Blob.
  */
-export async function convertImage(file, format = 'image/jpeg') {
+export async function convertImage(
+  file: File,
+  format: string = 'image/jpeg'
+): Promise<Blob> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = (event) => {
-      if (!event.target || typeof event.target.result !== 'string') return;
+    reader.onload = (event: ProgressEvent<FileReader>) => {
+      const result = event.target?.result;
+      if (typeof result !== 'string') {
+        reject(new Error('FileReader result is not a string'));
+        return;
+      }
+
       const img = new Image();
-      img.src = event.target.result;
+      img.src = result;
       img.onload = () => {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
@@ -19,10 +27,10 @@ export async function convertImage(file, format = 'image/jpeg') {
           reject(new Error('Failed to get 2d context'));
           return;
         }
-        
+
         canvas.width = img.width;
         canvas.height = img.height;
-        
+
         // Fill background white for JPEG (PNG might have transparency)
         if (format === 'image/jpeg' || format === 'image/jpg') {
           ctx.beginPath();
@@ -30,9 +38,9 @@ export async function convertImage(file, format = 'image/jpeg') {
           ctx.fillStyle = 'white';
           ctx.fill();
         }
-        
+
         ctx.drawImage(img, 0, 0);
-        
+
         canvas.toBlob(
           (blob) => {
             if (blob) {

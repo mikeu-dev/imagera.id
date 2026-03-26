@@ -1,19 +1,29 @@
 /**
  * Resizes an image to specified dimensions.
- * @param {File} file - The image file to resize.
- * @param {number} width - Target width.
- * @param {number} height - Target height.
- * @param {boolean} maintainRatio - Whether to maintain the aspect ratio.
- * @returns {Promise<Blob>} - The resized image as a Blob.
+ * @param file - The image file to resize.
+ * @param width - Target width.
+ * @param height - Target height.
+ * @param maintainRatio - Whether to maintain the aspect ratio.
+ * @returns The resized image as a Blob.
  */
-export async function resizeImage(file, width, height, maintainRatio = true) {
+export async function resizeImage(
+  file: File,
+  width: number,
+  height: number,
+  maintainRatio: boolean = true
+): Promise<Blob> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = (event) => {
-      if (!event.target || typeof event.target.result !== 'string') return;
+    reader.onload = (event: ProgressEvent<FileReader>) => {
+      const result = event.target?.result;
+      if (typeof result !== 'string') {
+        reject(new Error('FileReader result is not a string'));
+        return;
+      }
+
       const img = new Image();
-      img.src = event.target.result;
+      img.src = result;
       img.onload = () => {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
@@ -21,10 +31,10 @@ export async function resizeImage(file, width, height, maintainRatio = true) {
           reject(new Error('Failed to get 2d context'));
           return;
         }
-        
+
         let newWidth = width;
         let newHeight = height;
-        
+
         if (maintainRatio) {
           const ratio = img.width / img.height;
           if (newWidth / newHeight > ratio) {
@@ -33,12 +43,12 @@ export async function resizeImage(file, width, height, maintainRatio = true) {
             newHeight = newWidth / ratio;
           }
         }
-        
+
         canvas.width = newWidth;
         canvas.height = newHeight;
-        
+
         ctx.drawImage(img, 0, 0, newWidth, newHeight);
-        
+
         canvas.toBlob(
           (blob) => {
             if (blob) {

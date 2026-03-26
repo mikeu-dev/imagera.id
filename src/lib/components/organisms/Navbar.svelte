@@ -1,3 +1,4 @@
+<script lang="ts">
   import Text from '../atoms/Text.svelte';
   import { localizeHref as i } from '$lib/paraglide/runtime';
 </script>
@@ -5,7 +6,7 @@
 <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
-      <div class="flex-shrink-0 flex items-center">
+      <div class="shrink-0 flex items-center">
         <a href={i('/')} class="flex items-center space-x-2 group">
           <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform shadow-md shadow-blue-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
