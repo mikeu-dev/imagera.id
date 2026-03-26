@@ -1,16 +1,16 @@
 <script>
-  import Navbar from '../organisms/Navbar.svelte';
-  import Footer from '../organisms/Footer.svelte';
+	import Navbar from '../organisms/Navbar.svelte';
+	import Footer from '../organisms/Footer.svelte';
 
-  let { children } = $props();
+	let { children } = $props();
 </script>
 
-<div class="min-h-screen flex flex-col bg-white">
-  <Navbar />
-  
-  <main class="grow">
-    {@render children?.()}
-  </main>
-  
-  <Footer />
+<div class="flex min-h-screen flex-col bg-white">
+	<Navbar />
+
+	<main class="grow">
+		{@render children?.()}
+	</main>
+
+	<Footer />
 </div>

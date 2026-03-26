@@ -3,6 +3,7 @@
 Proyek ini mengikuti prinsip **Atomic Design** untuk memisahkan tanggung jawab dan meningkatkan ketergunaan komponen. Berikut adalah ringkasan struktur komponen yang telah dikembangkan di dalam folder `src/lib/components/`.
 
 ## ⚛️ Atoms (Dasar)
+
 Komponen terkecil yang tidak dapat dipecah lagi. Mereka berfungsi sebagai blok pembangunan utama.
 
 - **Button.svelte**: Tombol standar dengan varian warna (`primary`, `secondary`, `success`, `danger`) dan ukuran (`sm`, `md`, `lg`).
@@ -12,14 +13,16 @@ Komponen terkecil yang tidak dapat dipecah lagi. Mereka berfungsi sebagai blok p
 - **Text.svelte**: Komponen tipografi yang mendukung berbagai tag HTML (`h1-h4`, `p`, `span`, `label`) dan varian teks.
 
 ## 🧬 Molecules (Molekul)
+
 Gabungan dari beberapa atom yang bekerja bersama sebagai satu unit fungsional.
 
-- **ImageUploader.svelte**: Area pengunggahan file yang mendukung *drag and drop* dan pemilihan file manual melalui `FileInput` dan `Button`.
+- **ImageUploader.svelte**: Area pengunggahan file yang mendukung _drag and drop_ dan pemilihan file manual melalui `FileInput` dan `Button`.
 - **ImagePreview.svelte**: Menampilkan pratinjau gambar yang dipilih sebelum dan sesudah pengolahan.
 - **SizeInfo.svelte**: Statistik ukuran file gambar (asli vs hasil) dan persentase penghematan ruang.
 - **ToolHeader.svelte**: Header yang berisi judul dan deskripsi singkat untuk setiap alat pengolahan gambar.
 
 ## 🧱 Organisms (Organisme)
+
 Komponen yang lebih kompleks yang membentuk bagian fungsional dari antarmuka pengguna.
 
 - **ToolContainer.svelte**: Wadah utama yang membungkus seluruh alur kerja alat pengolahan gambar.
@@ -28,6 +31,7 @@ Komponen yang lebih kompleks yang membentuk bagian fungsional dari antarmuka pen
 - **Footer.svelte**: Informasi hak cipta, link navigasi sekunder, dan deskripsi singkat platform.
 
 ## 🎭 Templates (Templat)
+
 Layout tingkat tinggi yang mendefinisikan struktur halaman tanpa konten fungsional yang spesifik.
 
 - **MainLayout.svelte**: Templat global yang menyertakan `Navbar`, konten utama yang dinamis, dan `Footer`.
@@ -36,6 +40,7 @@ Layout tingkat tinggi yang mendefinisikan struktur halaman tanpa konten fungsion
 ---
 
 ## Prinsip Pengembangan Komponen:
+
 1. **Stateless**: Sebagian besar komponen atom bersifat murni visual dan tidak menyimpan state yang kompleks.
 2. **Prop-Driven**: Kustomisasi dilakukan melalui `$props()` Svelte 5.
 3. **TypeScript**: Seluruh komponen menggunakan `lang="ts"` untuk keamanan tipe data dan autocompletion yang lebih baik.
