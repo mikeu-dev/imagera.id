@@ -97,6 +97,8 @@
 <svelte:head>
 	<title>{m.resize_title()}</title>
 	<meta name="description" content={m.resize_meta()} />
+	<meta property="og:title" content={m.resize_title()} />
+	<meta property="og:description" content={m.resize_meta()} />
 </svelte:head>
 
 <ToolPageTemplate title={m.resize_heading()} description={m.resize_desc()}>

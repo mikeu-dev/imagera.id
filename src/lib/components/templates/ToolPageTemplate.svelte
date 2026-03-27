@@ -6,10 +6,10 @@
 	let {
 		title,
 		description,
-		seoText,
-		preview: preview_prop,
-		controls: controls_prop,
-		info: info_prop
+		seoText = null,
+		preview: preview_prop = null,
+		controls: controls_prop = null,
+		info: info_prop = null
 	} = $props();
 </script>
 

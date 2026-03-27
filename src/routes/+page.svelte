@@ -6,6 +6,13 @@
 
 	const tools = [
 		{
+			title: m.nav_crop(),
+			description: m.crop_desc(),
+			href: '/crop-image',
+			icon: 'M6.13 1L6 16a2 2 0 0 0 2 2h15 M1 6.13L16 6a2 2 0 0 1 2 2v15',
+			color: 'bg-indigo-500'
+		},
+		{
 			title: m.home_tool_compress_title(),
 			description: m.home_tool_compress_desc(),
 			href: '/compress-image',
@@ -61,6 +68,8 @@
 <svelte:head>
 	<title>{m.home_title()}</title>
 	<meta name="description" content={m.home_meta_desc()} />
+	<meta property="og:title" content={m.home_title()} />
+	<meta property="og:description" content={m.home_meta_desc()} />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -116,7 +125,7 @@
 			>
 		</div>
 
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 			{#each tools as tool (tool.href)}
 				<a
 					href={i(tool.href)}

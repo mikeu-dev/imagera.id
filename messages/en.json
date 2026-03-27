@@ -139,5 +139,22 @@
 	"jpgtopng_seo_li2_desc": " Excellent for design assets that are frequently re-edited.",
 	"jpgtopng_seo_li3_label": "Transparency:",
 	"jpgtopng_seo_li3_desc": " Although JPG doesn't have it, PNG is ready if you want to add transparency later.",
-	"jpgtopng_err": "Failed to convert to PNG. Please try again."
+	"jpgtopng_err": "Failed to convert to PNG. Please try again.",
+	"nav_crop": "Crop Image",
+	"crop_title": "Crop Image Online - Precision & Ease | Imagera.id",
+	"crop_meta": "Crop your images to various aspect ratios (1:1, 16:9, 4:3) or free-form instantly. 100% secure and runs in your browser.",
+	"crop_heading": "Crop Image",
+	"crop_desc": "Adjust your image composition by accurately cropping the desired area.",
+	"crop_ratio": "Aspect Ratio",
+	"crop_ratio_free": "Free",
+	"crop_note": "Use drag and zoom to adjust the crop area within the preview box.",
+	"crop_seo_title": "Why is cropping images important?",
+	"crop_seo_p1": "Cropping helps remove unnecessary elements from a photo, focus the audience on the main subject, or adjust images for specific social media formats.",
+	"crop_seo_li1_label": "Social Format:",
+	"crop_seo_li1_desc": " Easily adjust images for Instagram (1:1) or YouTube covers (16:9).",
+	"crop_seo_li2_label": "Composition:",
+	"crop_seo_li2_desc": " Apply the rule of thirds for more aesthetic photo results.",
+	"crop_seo_li3_label": "Optimization:",
+	"crop_seo_li3_desc": " Reduce file size by discarding areas that are never used.",
+	"crop_err": "Failed to crop image. Please try again."
 }

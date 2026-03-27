@@ -67,6 +67,8 @@
 <svelte:head>
 	<title>{m.pngtojpg_title()}</title>
 	<meta name="description" content={m.pngtojpg_meta()} />
+	<meta property="og:title" content={m.pngtojpg_title()} />
+	<meta property="og:description" content={m.pngtojpg_meta()} />
 </svelte:head>
 
 <ToolPageTemplate title={m.pngtojpg_heading()} description={m.pngtojpg_desc()}>

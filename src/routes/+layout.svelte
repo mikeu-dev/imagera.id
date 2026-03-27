@@ -17,6 +17,12 @@
 	});
 </script>
 
+<svelte:head>
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta property="og:site_name" content="Imagera.id" />
+</svelte:head>
+
 <MainLayout>
 	{@render children?.()}
 </MainLayout>

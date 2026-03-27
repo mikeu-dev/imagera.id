@@ -16,6 +16,7 @@
 	}
 
 	const menuItems = $derived([
+		{ href: '/crop-image', label: m.nav_crop() },
 		{ href: '/compress-image', label: m.nav_compress() },
 		{ href: '/resize-image', label: m.nav_resize() },
 		{ href: '/png-to-jpg', label: m.nav_png_to_jpg() },

@@ -71,6 +71,8 @@
 <svelte:head>
 	<title>{m.webp_title()}</title>
 	<meta name="description" content={m.webp_meta()} />
+	<meta property="og:title" content={m.webp_title()} />
+	<meta property="og:description" content={m.webp_meta()} />
 </svelte:head>
 
 <ToolPageTemplate title={m.webp_heading()} description={m.webp_desc()}>

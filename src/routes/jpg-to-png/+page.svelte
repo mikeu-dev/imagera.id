@@ -67,6 +67,8 @@
 <svelte:head>
 	<title>{m.jpgtopng_title()}</title>
 	<meta name="description" content={m.jpgtopng_meta()} />
+	<meta property="og:title" content={m.jpgtopng_title()} />
+	<meta property="og:description" content={m.jpgtopng_meta()} />
 </svelte:head>
 
 <ToolPageTemplate title={m.jpgtopng_heading()} description={m.jpgtopng_desc()}>

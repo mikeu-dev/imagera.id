@@ -70,6 +70,8 @@
 <svelte:head>
 	<title>{m.compress_title()}</title>
 	<meta name="description" content={m.compress_meta()} />
+	<meta property="og:title" content={m.compress_title()} />
+	<meta property="og:description" content={m.compress_meta()} />
 </svelte:head>
 
 <ToolPageTemplate title={m.compress_heading()} description={m.compress_desc()}>
