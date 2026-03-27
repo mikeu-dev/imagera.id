@@ -19,6 +19,7 @@
 		{ href: '/crop-image', label: m.nav_crop() },
 		{ href: '/compress-image', label: m.nav_compress() },
 		{ href: '/resize-image', label: m.nav_resize() },
+		{ href: '/watermark-image', label: m.nav_watermark() },
 		{ href: '/png-to-jpg', label: m.nav_png_to_jpg() },
 		{ href: '/jpg-to-png', label: m.nav_jpg_to_png() },
 		{ href: '/webp-converter', label: m.nav_webp_converter() }
