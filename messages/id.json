@@ -124,5 +124,20 @@
 	"webp_seo_li2_desc": " Waktu loading yang cepat sangat berpengaruh pada peringkat SEO website Anda.",
 	"webp_seo_li3_label": "Dukungan Transparansi:",
 	"webp_seo_li3_desc": " Tidak seperti JPEG, format WebP mendukung kompresi sekaligus menjaga area transparan pada gambar.",
-	"webp_err": "Gagal mengonversi ke WebP. Silakan coba lagi."
+	"webp_err": "Gagal mengonversi ke WebP. Silakan coba lagi.",
+	"nav_jpg_to_png": "JPG ke PNG",
+	"jpgtopng_title": "JPG ke PNG Online - Gratis & Aman | Imagera.id",
+	"jpgtopng_meta": "Konversi gambar JPG Anda ke format PNG lossless secara instan. 100% aman dan berjalan di browser Anda. Gratis tanpa batas.",
+	"jpgtopng_heading": "Konversi JPG ke PNG",
+	"jpgtopng_desc": "Ubah file JPG Anda menjadi format PNG berkualitas tinggi dengan dukungan transparansi.",
+	"jpgtopng_note": "Konversi ke PNG menghasilkan ukuran file yang lebih besar tetapi menjaga kualitas gambar tanpa degradasi (lossless).",
+	"jpgtopng_seo_title": "Kapan harus menggunakan PNG?",
+	"jpgtopng_seo_p1": "PNG adalah format pilihan terbaik jika Anda mengutamakan kualitas gambar di atas ukuran file, atau jika Anda berencana untuk melakukan pengeditan lebih lanjut nanti.",
+	"jpgtopng_seo_li1_label": "Kualitas Lossless:",
+	"jpgtopng_seo_li1_desc": " Tidak ada detail gambar yang hilang saat disimpan kembali.",
+	"jpgtopng_seo_li2_label": "Editing:",
+	"jpgtopng_seo_li2_desc": " Sangat baik untuk aset desain yang sering diedit ulang.",
+	"jpgtopng_seo_li3_label": "Transparansi:",
+	"jpgtopng_seo_li3_desc": " Meskipun JPG tidak memilikinya, PNG siap jika Anda ingin menambahkan transparansi nanti.",
+	"jpgtopng_err": "Gagal mengonversi ke PNG. Silakan coba lagi."
 }

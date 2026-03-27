@@ -124,5 +124,20 @@
 	"webp_seo_li2_desc": " Faster loading times improve your website's search engine ranking.",
 	"webp_seo_li3_label": "Transparency Support:",
 	"webp_seo_li3_desc": " Unlike JPEG, WebP supports both lossy compression and transparency.",
-	"webp_err": "Failed to convert to WebP. Please try again."
+	"webp_err": "Failed to convert to WebP. Please try again.",
+	"nav_jpg_to_png": "JPG to PNG",
+	"jpgtopng_title": "JPG to PNG Online - Free & Secure | Imagera.id",
+	"jpgtopng_meta": "Convert your JPG images to lossless PNG format instantly. 100% secure and runs in your browser. Unlimited free.",
+	"jpgtopng_heading": "Convert JPG to PNG",
+	"jpgtopng_desc": "Change your JPG files into high-quality PNG format with transparency support.",
+	"jpgtopng_note": "Converting to PNG results in a larger file size but maintains image quality without degradation (lossless).",
+	"jpgtopng_seo_title": "When to use PNG?",
+	"jpgtopng_seo_p1": "PNG is the best format choice if you prioritize image quality over file size, or if you plan to perform further editing later.",
+	"jpgtopng_seo_li1_label": "Lossless Quality:",
+	"jpgtopng_seo_li1_desc": " No image detail is lost when re-saving.",
+	"jpgtopng_seo_li2_label": "Editing:",
+	"jpgtopng_seo_li2_desc": " Excellent for design assets that are frequently re-edited.",
+	"jpgtopng_seo_li3_label": "Transparency:",
+	"jpgtopng_seo_li3_desc": " Although JPG doesn't have it, PNG is ready if you want to add transparency later.",
+	"jpgtopng_err": "Failed to convert to PNG. Please try again."
 }

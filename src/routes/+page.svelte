@@ -27,6 +27,13 @@
 			color: 'bg-purple-500'
 		},
 		{
+			title: m.nav_jpg_to_png(),
+			description: m.jpgtopng_desc(),
+			href: '/jpg-to-png',
+			icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M16 10l-2 2 2 2 M8 10l-2 2 2 2',
+			color: 'bg-rose-500'
+		},
+		{
 			title: m.home_tool_webp_title(),
 			description: m.home_tool_webp_desc(),
 			href: '/webp-converter',

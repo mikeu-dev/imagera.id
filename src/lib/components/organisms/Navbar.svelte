@@ -2,11 +2,26 @@
 	import Text from '../atoms/Text.svelte';
 	import { localizeHref as i, getLocale, setLocale } from '$lib/paraglide/runtime';
 	import * as m from '$lib/paraglide/messages';
+	import { fade, slide } from 'svelte/transition';
+
+	let isMenuOpen = $state(false);
+
+	function toggleMenu() {
+		isMenuOpen = !isMenuOpen;
+	}
 
 	function toggleLanguage() {
 		const newLang = getLocale() === 'id' ? 'en' : 'id';
 		setLocale(newLang);
 	}
+
+	const menuItems = $derived([
+		{ href: '/compress-image', label: m.nav_compress() },
+		{ href: '/resize-image', label: m.nav_resize() },
+		{ href: '/png-to-jpg', label: m.nav_png_to_jpg() },
+		{ href: '/jpg-to-png', label: m.nav_jpg_to_png() },
+		{ href: '/webp-converter', label: m.nav_webp_converter() }
+	]);
 </script>
 
 <nav class="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
@@ -67,26 +82,13 @@
 					<div
 						class="invisible absolute right-0 mt-2 w-48 origin-top-right scale-95 transform rounded-xl border border-gray-100 bg-white py-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100"
 					>
-						<a
-							href={i('/compress-image')}
-							class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-							>{m.nav_compress()}</a
-						>
-						<a
-							href={i('/resize-image')}
-							class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-							>{m.nav_resize()}</a
-						>
-						<a
-							href={i('/png-to-jpg')}
-							class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-							>{m.nav_png_to_jpg()}</a
-						>
-						<a
-							href={i('/webp-converter')}
-							class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-							>{m.nav_webp_converter()}</a
-						>
+						{#each menuItems as item (item.href)}
+							<a
+								href={i(item.href)}
+								class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+								>{item.label}</a
+							>
+						{/each}
 					</div>
 				</div>
 			</div>
@@ -94,7 +96,7 @@
 			<div class="flex items-center space-x-4">
 				<button
 					onclick={toggleLanguage}
-					class="rounded border border-gray-200 px-2 py-1 text-xs font-bold uppercase text-gray-600 hover:bg-gray-100"
+					class="rounded border border-gray-200 px-2 py-1 text-xs font-bold uppercase text-gray-600 transition-colors hover:bg-gray-100"
 					aria-label="Toggle Language"
 				>
 					{getLocale()}
@@ -106,21 +108,80 @@
 				>
 					{m.nav_try_free()}
 				</a>
+
 				<button
-					class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 sm:hidden"
-					aria-label="Buka Menu"
+					class="relative h-10 w-10 rounded-lg p-2 text-gray-500 hover:bg-gray-100 sm:hidden"
+					aria-label="Toggle Menu"
+					onclick={toggleMenu}
 				>
-					<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-						><path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M4 6h16M4 12h16M4 18h16"
-						/></svg
-					>
+					<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+						{#if isMenuOpen}
+							<div in:fade={{ duration: 150 }}>
+								<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+									><path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M6 18L18 6M6 6l12 12"
+									/></svg
+								>
+							</div>
+						{:else}
+							<div in:fade={{ duration: 150 }}>
+								<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+									><path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M4 6h16M4 12h16M4 18h16"
+									/></svg
+								>
+							</div>
+						{/if}
+					</div>
 				</button>
 			</div>
 		</div>
 	</div>
+
+	<!-- Mobile Menu -->
+	{#if isMenuOpen}
+		<div class="border-t border-gray-100 bg-white sm:hidden" transition:slide={{ duration: 250 }}>
+			<div class="space-y-1 px-4 py-4">
+				<a
+					href={i('/')}
+					onclick={() => (isMenuOpen = false)}
+					class="block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 hover:text-blue-600"
+				>
+					{m.nav_home()}
+				</a>
+				<div class="py-2">
+					<p class="px-3 text-xs font-bold tracking-widest text-gray-400 uppercase">
+						{m.nav_tools()}
+					</p>
+					<div class="mt-2 space-y-1">
+						{#each menuItems as item (item.href)}
+							<a
+								href={i(item.href)}
+								onclick={() => (isMenuOpen = false)}
+								class="block rounded-lg px-6 py-2 text-sm font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+							>
+								{item.label}
+							</a>
+						{/each}
+					</div>
+				</div>
+				<div class="pt-4">
+					<a
+						href={i('/compress-image')}
+						onclick={() => (isMenuOpen = false)}
+						class="flex w-full items-center justify-center rounded-xl bg-blue-600 px-4 py-3 text-base font-bold text-white shadow-lg shadow-blue-200"
+					>
+						{m.nav_try_free()}
+					</a>
+				</div>
+			</div>
+		</div>
+	{/if}
 </nav>
 
