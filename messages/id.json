@@ -49,6 +49,7 @@
 
 	"tool_original": "Asli",
 	"tool_result": "Hasil",
+	"tool_preview": "Pratinjau",
 	"tool_upload_text": "Klik atau seret file ke sini",
 	"tool_upload_desc": "Mendukung JPEG, PNG, WEBP",
 	"tool_download": "Unduh",
@@ -180,5 +181,14 @@
 	"watermark_seo_li2_desc": " Memastikan audiens tahu siapa pembuat konten aslinya saat gambar dibagikan.",
 	"watermark_seo_li3_label": "Profesionalisme:",
 	"watermark_seo_li3_desc": " Memberikan kesan aset yang terkurasi dan milik perusahaan/fotografer profesional.",
-	"watermark_err": "Gagal menambahkan watermark. Silakan coba lagi."
+	"watermark_err": "Gagal menambahkan watermark. Silakan coba lagi.",
+	"file_input_label": "Pilih gambar atau seret ke sini",
+	"file_input_help": "Mendukung format JPG, PNG, WEBP (Maks. 10MB)",
+	"bulk_queue": "Antrean Gambar",
+	"bulk_download_zip": "Unduh Semua (ZIP)",
+	"bulk_clear": "Bersihkan Semua",
+	"status_waiting": "Menunggu",
+	"status_processing": "Memproses",
+	"status_done": "Selesai",
+	"status_error": "Gagal"
 }

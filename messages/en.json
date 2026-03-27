@@ -49,6 +49,7 @@
 
 	"tool_original": "Original",
 	"tool_result": "Result",
+	"tool_preview": "Preview",
 	"tool_upload_text": "Click or drag file here",
 	"tool_upload_desc": "Supports JPEG, PNG, WEBP",
 	"tool_download": "Download",
@@ -180,5 +181,14 @@
 	"watermark_seo_li2_desc": " Ensure the audience knows who the original content creator is when the image is shared.",
 	"watermark_seo_li3_label": "Professionalism:",
 	"watermark_seo_li3_desc": " Provide the impression of assets curated by a professional company/photographer.",
-	"watermark_err": "Failed to add watermark. Please try again."
+	"watermark_err": "Failed to add watermark. Please try again.",
+	"file_input_label": "Choose images or drag here",
+	"file_input_help": "Supports JPG, PNG, WEBP (Max. 10MB)",
+	"bulk_queue": "Image Queue",
+	"bulk_download_zip": "Download All (ZIP)",
+	"bulk_clear": "Clear All",
+	"status_waiting": "Waiting",
+	"status_processing": "Processing",
+	"status_done": "Done",
+	"status_error": "Failed"
 }

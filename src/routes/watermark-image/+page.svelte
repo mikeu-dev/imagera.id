@@ -29,7 +29,9 @@
 		{ id: 'bottom-left', icon: '↙' }, { id: 'bottom-center', icon: '↓' }, { id: 'bottom-right', icon: '↘' }
 	];
 
-	function handleUpload(file: File) {
+	function handleUpload(files: File[]) {
+		const file = files[0];
+		if (!file) return;
 		selectedFile = file;
 		const reader = new FileReader();
 		reader.onload = (e) => {
@@ -42,7 +44,9 @@
 		reader.readAsDataURL(file);
 	}
 
-	function handleLogoUpload(file: File) {
+	function handleLogoUpload(files: File[]) {
+		const file = files[0];
+		if (!file) return;
 		const reader = new FileReader();
 		reader.onload = (e) => {
 			if (e.target && typeof e.target.result === 'string') {

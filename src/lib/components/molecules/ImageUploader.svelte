@@ -1,13 +1,19 @@
 <script lang="ts">
 	import FileInput from '../atoms/FileInput.svelte';
 
-	let { onupload }: { onupload: (file: File) => void } = $props();
+	let {
+		onupload,
+		multiple = false
+	}: {
+		onupload: (files: File[]) => void;
+		multiple?: boolean;
+	} = $props();
 
 	function handleFileChange(event: Event) {
 		const target = event.target as HTMLInputElement;
 		const files = target.files;
 		if (files && files.length > 0) {
-			onupload(files[0]);
+			onupload(Array.from(files));
 		}
 	}
 
@@ -16,7 +22,7 @@
 		if (event.dataTransfer) {
 			const files = event.dataTransfer.files;
 			if (files && files.length > 0) {
-				onupload(files[0]);
+				onupload(Array.from(files));
 			}
 		}
 	}
@@ -27,5 +33,5 @@
 </script>
 
 <div role="presentation" class="w-full" ondrop={handleDrop} ondragover={handleDragOver}>
-	<FileInput onchange={handleFileChange} />
+	<FileInput {multiple} onchange={handleFileChange} />
 </div>

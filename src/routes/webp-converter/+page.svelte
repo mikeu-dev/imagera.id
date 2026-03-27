@@ -20,7 +20,9 @@
 	const originalSize = $derived(selectedFile ? selectedFile.size : 0);
 	const resultSize = $derived(resultBlob ? resultBlob.size : 0);
 
-	function handleUpload(file: File) {
+	function handleUpload(files: File[]) {
+		const file = files[0];
+		if (!file) return;
 		selectedFile = file;
 		const reader = new FileReader();
 		reader.onload = (e) => {

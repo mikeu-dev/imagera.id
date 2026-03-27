@@ -1,4 +1,6 @@
 <script lang="ts">
+	import * as m from '$lib/paraglide/messages';
+
 	let {
 		onchange,
 		id = '',
@@ -34,13 +36,13 @@
 		{...props}
 	/>
 	<div
-		class="group rounded-xl border-2 border-dashed border-gray-300 p-12 text-center transition-all hover:border-blue-400 hover:bg-blue-50/50"
+		class="group rounded-2xl border-2 border-dashed border-gray-200 p-12 text-center transition-all hover:border-blue-400 hover:bg-blue-50/50"
 	>
 		<div class="flex flex-col items-center justify-center space-y-4">
 			<div class="rounded-full bg-blue-100/50 p-4 transition-transform group-hover:scale-110">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					class="h-8 w-8 text-blue-600"
+					class="h-7 w-7 text-blue-600"
 					viewBox="0 0 24 24"
 					fill="none"
 					stroke="currentColor"
@@ -53,8 +55,8 @@
 					/><line x1="12" y1="3" x2="12" y2="15" />
 				</svg>
 			</div>
-			<div class="text-sm font-medium text-gray-700">Pilih gambar atau seret ke sini</div>
-			<div class="text-xs text-gray-400">Mendukung format JPG, PNG, WEBP (Maks. 10MB)</div>
+			<div class="text-sm font-semibold text-gray-700">{m.file_input_label()}</div>
+			<div class="text-xs text-gray-400">{m.file_input_help()}</div>
 		</div>
 	</div>
 </div>

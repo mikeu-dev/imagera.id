@@ -26,7 +26,9 @@
 		{ label: m.crop_ratio_free(), value: null }
 	];
 
-	function handleUpload(file: File) {
+	function handleUpload(files: File[]) {
+		const file = files[0];
+		if (!file) return;
 		selectedFile = file;
 		const reader = new FileReader();
 		reader.onload = (e) => {
