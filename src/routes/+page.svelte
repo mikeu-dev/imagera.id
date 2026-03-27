@@ -10,49 +10,56 @@
 			description: m.watermark_desc(),
 			href: '/watermark-image',
 			icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-			color: 'bg-purple-600'
+			color: 'bg-purple-600',
+			batch: true
 		},
 		{
 			title: m.nav_crop(),
 			description: m.crop_desc(),
 			href: '/crop-image',
 			icon: 'M6.13 1L6 16a2 2 0 0 0 2 2h15 M1 6.13L16 6a2 2 0 0 1 2 2v15',
-			color: 'bg-indigo-500'
+			color: 'bg-indigo-500',
+			batch: false
 		},
 		{
 			title: m.home_tool_compress_title(),
 			description: m.home_tool_compress_desc(),
 			href: '/compress-image',
 			icon: 'M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z',
-			color: 'bg-blue-500'
+			color: 'bg-blue-500',
+			batch: true
 		},
 		{
 			title: m.home_tool_resize_title(),
 			description: m.home_tool_resize_desc(),
 			href: '/resize-image',
 			icon: 'M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5',
-			color: 'bg-green-500'
+			color: 'bg-green-500',
+			batch: true
 		},
 		{
 			title: m.home_tool_png_title(),
 			description: m.home_tool_png_desc(),
 			href: '/png-to-jpg',
 			icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M8 10l-2 2 2 2 M16 10l2 2-2 2',
-			color: 'bg-purple-500'
+			color: 'bg-purple-500',
+			batch: true
 		},
 		{
 			title: m.nav_jpg_to_png(),
 			description: m.jpgtopng_desc(),
 			href: '/jpg-to-png',
 			icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M16 10l-2 2 2 2 M8 10l-2 2 2 2',
-			color: 'bg-rose-500'
+			color: 'bg-rose-500',
+			batch: true
 		},
 		{
 			title: m.home_tool_webp_title(),
 			description: m.home_tool_webp_desc(),
 			href: '/webp-converter',
 			icon: 'M13 10V3L4 14h7v7l9-11h-7z',
-			color: 'bg-amber-500'
+			color: 'bg-amber-500',
+			batch: true
 		}
 	];
 
@@ -136,8 +143,15 @@
 			{#each tools as tool (tool.href)}
 				<a
 					href={i(tool.href)}
-					class="group block rounded-3xl border border-gray-100 bg-white p-8 shadow-xs transition-all hover:-translate-y-1 hover:shadow-xl"
+					class="group relative block rounded-3xl border border-gray-100 bg-white p-8 shadow-xs transition-all hover:-translate-y-1 hover:shadow-xl"
 				>
+					{#if tool.batch}
+						<div class="absolute top-6 right-6 flex items-center space-x-1 rounded-full bg-blue-50 px-3 py-1 text-[10px] font-bold text-blue-600 shadow-xs ring-1 ring-blue-100 ring-inset">
+							<span class="flex h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+							<span>BATCH</span>
+						</div>
+					{/if}
+
 					<div
 						class="h-14 w-14 {tool.color} mb-6 flex items-center justify-center rounded-2xl text-white transition-transform group-hover:scale-110"
 					>
