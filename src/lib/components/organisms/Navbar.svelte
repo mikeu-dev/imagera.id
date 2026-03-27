@@ -1,6 +1,12 @@
 <script lang="ts">
 	import Text from '../atoms/Text.svelte';
-	import { localizeHref as i } from '$lib/paraglide/runtime';
+	import { localizeHref as i, getLocale, setLocale } from '$lib/paraglide/runtime';
+	import * as m from '$lib/paraglide/messages';
+
+	function toggleLanguage() {
+		const newLang = getLocale() === 'id' ? 'en' : 'id';
+		setLocale(newLang);
+	}
 </script>
 
 <nav class="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
@@ -38,16 +44,17 @@
 				</a>
 			</div>
 
-			<div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+			<div class="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-8">
 				<a
 					href={i('/')}
-					class="text-sm font-medium text-gray-500 transition-colors hover:text-blue-600">Beranda</a
+					class="text-sm font-medium text-gray-500 transition-colors hover:text-blue-600"
+					>{m.nav_home()}</a
 				>
 				<div class="group relative">
 					<button
 						class="flex items-center text-sm font-medium text-gray-500 transition-colors hover:text-blue-600"
 					>
-						Peralatan
+						{m.nav_tools()}
 						<svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
 							><path
 								stroke-linecap="round"
@@ -63,28 +70,41 @@
 						<a
 							href={i('/compress-image')}
 							class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-							>Kompres Gambar</a
+							>{m.nav_compress()}</a
 						>
 						<a
 							href={i('/resize-image')}
 							class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-							>Ubah Ukuran</a
+							>{m.nav_resize()}</a
 						>
 						<a
 							href={i('/png-to-jpg')}
 							class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-							>PNG ke JPG</a
+							>{m.nav_png_to_jpg()}</a
+						>
+						<a
+							href={i('/webp-converter')}
+							class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+							>{m.nav_webp_converter()}</a
 						>
 					</div>
 				</div>
 			</div>
 
 			<div class="flex items-center space-x-4">
+				<button
+					onclick={toggleLanguage}
+					class="rounded border border-gray-200 px-2 py-1 text-xs font-bold uppercase text-gray-600 hover:bg-gray-100"
+					aria-label="Toggle Language"
+				>
+					{getLocale()}
+				</button>
+
 				<a
 					href={i('/compress-image')}
 					class="hidden items-center rounded-lg border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition-all hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-hidden active:scale-95 md:inline-flex"
 				>
-					Coba Gratis
+					{m.nav_try_free()}
 				</a>
 				<button
 					class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 sm:hidden"
@@ -103,3 +123,4 @@
 		</div>
 	</div>
 </nav>
+

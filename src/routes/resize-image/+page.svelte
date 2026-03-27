@@ -7,6 +7,8 @@
 	import Input from '$lib/components/atoms/Input.svelte';
 	import Text from '$lib/components/atoms/Text.svelte';
 	import { resizeImage } from '$lib/utils/imageResize';
+	import * as m from '$lib/paraglide/messages';
+	import { toast } from '$lib/stores/toast.svelte';
 
 	let selectedFile = $state<File | null>(null);
 	let previewSrc = $state<string>('');
@@ -63,9 +65,10 @@
 			const blob = await resizeImage(selectedFile, width, height, maintainRatio);
 			resultBlob = blob;
 			resultSrc = URL.createObjectURL(blob);
+			toast.success(m.tool_result() + ' ' + m.nav_resize());
 		} catch (err) {
 			console.error('Resize failed:', err);
-			alert('Gagal mengubah ukuran gambar. Silakan coba lagi.');
+			toast.error(m.resize_err());
 		} finally {
 			processing = false;
 		}
@@ -92,17 +95,11 @@
 </script>
 
 <svelte:head>
-	<title>Ubah Ukuran Gambar Online - Cepat & Aman | Imagera.id</title>
-	<meta
-		name="description"
-		content="Ubah dimensi lebar dan tinggi gambar Anda secara instan. Menjaga rasio aspek dengan mudah. 100% aman dan berjalan di browser."
-	/>
+	<title>{m.resize_title()}</title>
+	<meta name="description" content={m.resize_meta()} />
 </svelte:head>
 
-<ToolPageTemplate
-	title="Ubah Ukuran Gambar"
-	description="Ubah resolusi lebar dan tinggi gambar Anda sesuai kebutuhan secara akurat."
->
+<ToolPageTemplate title={m.resize_heading()} description={m.resize_desc()}>
 	{#snippet preview()}
 		<div class="space-y-6">
 			{#if !selectedFile}
@@ -111,13 +108,13 @@
 				<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
 					<div class="space-y-2">
 						<Text tag="span" variant="muted" class="text-xs font-bold text-gray-500 uppercase"
-							>Asli: {originalWidth}x{originalHeight}</Text
+							>{m.tool_original()}: {originalWidth}x{originalHeight}</Text
 						>
 						<ImagePreview src={previewSrc} />
 					</div>
 					<div class="space-y-2">
 						<Text tag="span" variant="muted" class="text-xs font-bold text-blue-600 uppercase"
-							>Hasil: {width}x{height}</Text
+							>{m.tool_result()}: {width}x{height}</Text
 						>
 						<ImagePreview src={resultSrc} loading={processing} />
 					</div>
@@ -136,14 +133,14 @@
 		>
 			<div class="grid grid-cols-2 gap-4">
 				<Input
-					label="Lebar (px)"
+					label={m.resize_width()}
 					type="number"
 					bind:value={width}
 					oninput={handleWidthChange}
 					disabled={!selectedFile || processing}
 				/>
 				<Input
-					label="Tinggi (px)"
+					label={m.resize_height()}
 					type="number"
 					bind:value={height}
 					oninput={handleHeightChange}
@@ -159,11 +156,11 @@
 					disabled={!selectedFile || processing}
 				/>
 				<label for="maintain-ratio" class="cursor-pointer text-sm font-medium text-gray-700"
-					>Jaga Rasio Aspek</label
+					>{m.resize_maintain()}</label
 				>
 			</div>
 			<Text tag="p" variant="muted" class="text-xs italic">
-				Dimensi yang lebih besar akan menambah ukuran file dan dapat mengurangi ketajaman.
+				{m.resize_note()}
 			</Text>
 		</ToolControls>
 	{/snippet}
@@ -175,22 +172,14 @@
 	{/snippet}
 
 	{#snippet seoText()}
-		<Text tag="h3" variant="headline" weight="bold">Cara mengubah ukuran gambar dengan cepat</Text>
+		<Text tag="h3" variant="headline" weight="bold">{m.resize_seo_title()}</Text>
 		<p>
-			Gunakan pengukur dimensi gambar kami untuk mengubah resolusi foto Anda tanpa perlu mengunduh
-			aplikasi khusus. Berikut keunggulannya:
+			{m.resize_seo_p1()}
 		</p>
 		<ul>
-			<li>
-				<strong>Akurat:</strong> Tentukan lebar (width) dan tinggi (height) secara presisi dengan pixel.
-			</li>
-			<li>
-				<strong>Rasio Aspek:</strong> Jaga proporsi gambar asli agar tidak terlihat gepeng atau melar.
-			</li>
-			<li>
-				<strong>Canvas API:</strong> Proses perubahan ukuran dilakukan dengan algoritma perataan browser
-				untuk hasil terbaik.
-			</li>
+			<li><strong>{m.resize_seo_li1_label()}</strong>{m.resize_seo_li1_desc()}</li>
+			<li><strong>{m.resize_seo_li2_label()}</strong>{m.resize_seo_li2_desc()}</li>
+			<li><strong>{m.resize_seo_li3_label()}</strong>{m.resize_seo_li3_desc()}</li>
 		</ul>
 	{/snippet}
 </ToolPageTemplate>

@@ -6,6 +6,8 @@
 	import ToolControls from '$lib/components/organisms/ToolControls.svelte';
 	import Text from '$lib/components/atoms/Text.svelte';
 	import { convertImage } from '$lib/utils/imageConverter';
+	import * as m from '$lib/paraglide/messages';
+	import { toast } from '$lib/stores/toast.svelte';
 
 	let selectedFile = $state<File | null>(null);
 	let previewSrc = $state<string>('');
@@ -37,9 +39,10 @@
 			const blob = await convertImage(selectedFile, 'image/jpeg');
 			resultBlob = blob;
 			resultSrc = URL.createObjectURL(blob);
+			toast.success(m.tool_result() + ' ' + m.nav_png_to_jpg());
 		} catch (err) {
 			console.error('Conversion failed:', err);
-			alert('Gagal mengonversi gambar. Silakan coba lagi.');
+			toast.error(m.pngtojpg_err());
 		} finally {
 			processing = false;
 		}
@@ -62,17 +65,11 @@
 </script>
 
 <svelte:head>
-	<title>PNG ke JPG Online - Konversi Gratis & Aman | Imagera.id</title>
-	<meta
-		name="description"
-		content="Konversi file PNG Anda ke JPG dengan latar belakang putih secara instan. 100% aman dan berjalan di browser. Gratis tanpa batas."
-	/>
+	<title>{m.pngtojpg_title()}</title>
+	<meta name="description" content={m.pngtojpg_meta()} />
 </svelte:head>
 
-<ToolPageTemplate
-	title="Konversi PNG ke JPG"
-	description="Ubah file PNG transparan menjadi JPG berkualitas tinggi dengan latar belakang putih."
->
+<ToolPageTemplate title={m.pngtojpg_heading()} description={m.pngtojpg_desc()}>
 	{#snippet preview()}
 		<div class="space-y-6">
 			{#if !selectedFile}
@@ -81,13 +78,13 @@
 				<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
 					<div class="space-y-2">
 						<Text tag="span" variant="muted" class="text-xs font-bold text-purple-600 uppercase"
-							>PNG Asli</Text
+							>{m.pngtojpg_original()}</Text
 						>
 						<ImagePreview src={previewSrc} />
 					</div>
 					<div class="space-y-2">
 						<Text tag="span" variant="muted" class="text-xs font-bold text-blue-600 uppercase"
-							>Hasil JPG</Text
+							>{m.pngtojpg_result()}</Text
 						>
 						<ImagePreview src={resultSrc} loading={processing} />
 					</div>
@@ -116,14 +113,12 @@
 					>
 				</div>
 				<p class="text-xs leading-tight text-purple-900">
-					Latar belakang transparan pada file PNG Anda akan secara otomatis ditutup dengan warna <strong
-						>Putih</strong
-					>.
+					{m.pngtojpg_note1_start()}
+					<strong class="text-purple-700">{m.pngtojpg_note1_bold()}</strong>{m.pngtojpg_note1_end()}
 				</p>
 			</div>
 			<Text tag="p" variant="muted" class="mt-4 text-xs italic">
-				Format JPG tidak mendukung transparansi, sehingga area transparan akan berubah menjadi
-				solid.
+				{m.pngtojpg_note2()}
 			</Text>
 		</ToolControls>
 	{/snippet}
@@ -135,18 +130,14 @@
 	{/snippet}
 
 	{#snippet seoText()}
-		<Text tag="h3" variant="headline" weight="bold">Kenapa konversi diperlukan?</Text>
+		<Text tag="h3" variant="headline" weight="bold">{m.pngtojpg_seo_title()}</Text>
 		<p>
-			File PNG seringkali memiliki ukuran yang jauh lebih besar karena resolusi dan data
-			transparansi (alpha channel). Konversi ke JPG sangat disarankan untuk penggunaan di website
-			atau blog guna mempercepat loading halaman.
+			{m.pngtojpg_seo_p1()}
 		</p>
 		<ul>
-			<li><strong>Efisiensi:</strong> Ukuran file JPG lebih optimal untuk optimasi SEO.</li>
-			<li>
-				<strong>Kompatibilitas:</strong> JPG didukung oleh hampir semua aplikasi pembaca berita dan email.
-			</li>
-			<li><strong>Tanpa Server:</strong> Konversi dilakukan secara instan di sisi klien.</li>
+			<li><strong>{m.pngtojpg_seo_li1_label()}</strong>{m.pngtojpg_seo_li1_desc()}</li>
+			<li><strong>{m.pngtojpg_seo_li2_label()}</strong>{m.pngtojpg_seo_li2_desc()}</li>
+			<li><strong>{m.pngtojpg_seo_li3_label()}</strong>{m.pngtojpg_seo_li3_desc()}</li>
 		</ul>
 	{/snippet}
 </ToolPageTemplate>

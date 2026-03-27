@@ -2,54 +2,58 @@
 	import Text from '$lib/components/atoms/Text.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import { localizeHref as i } from '$lib/paraglide/runtime';
+	import * as m from '$lib/paraglide/messages';
 
 	const tools = [
 		{
-			title: 'Kompres Gambar',
-			description: 'Kurangi ukuran file gambar Anda tanpa kehilangan kualitas secara signifikan.',
-			href: i('/compress-image'),
+			title: m.home_tool_compress_title(),
+			description: m.home_tool_compress_desc(),
+			href: '/compress-image',
 			icon: 'M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z',
 			color: 'bg-blue-500'
 		},
 		{
-			title: 'Ubah Ukuran',
-			description: 'Ubah dimensi lebar dan tinggi gambar Anda dengan mudah dan cepat.',
-			href: i('/resize-image'),
+			title: m.home_tool_resize_title(),
+			description: m.home_tool_resize_desc(),
+			href: '/resize-image',
 			icon: 'M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5',
 			color: 'bg-green-500'
 		},
 		{
-			title: 'PNG ke JPG',
-			description: 'Konversi file PNG transparan Anda menjadi format JPG berkualitas tinggi.',
-			href: i('/png-to-jpg'),
+			title: m.home_tool_png_title(),
+			description: m.home_tool_png_desc(),
+			href: '/png-to-jpg',
 			icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M8 10l-2 2 2 2 M16 10l2 2-2 2',
 			color: 'bg-purple-500'
+		},
+		{
+			title: m.home_tool_webp_title(),
+			description: m.home_tool_webp_desc(),
+			href: '/webp-converter',
+			icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+			color: 'bg-amber-500'
 		}
 	];
 
 	const features = [
 		{
-			title: 'Cepat & Ringan',
-			description: 'Semua proses dilakukan langsung di browser Anda. Tidak ada waktu tunggu unggah.'
+			title: m.home_features_fast_title(),
+			description: m.home_features_fast_desc()
 		},
 		{
-			title: '100% Aman',
-			description:
-				'Gambar Anda tidak pernah meninggalkan perangkat Anda. Privasi terjamin sepenuhnya.'
+			title: m.home_features_secure_title(),
+			description: m.home_features_secure_desc()
 		},
 		{
-			title: 'Gratis Selamanya',
-			description: 'Gunakan semua fitur kami sepuasnya tanpa biaya tersembunyi atau langganan.'
+			title: m.home_features_free_title(),
+			description: m.home_features_free_desc()
 		}
 	];
 </script>
 
 <svelte:head>
-	<title>Imagera.id - Edit Gambar Tanpa Ribet</title>
-	<meta
-		name="description"
-		content="Platform pengolahan gambar gratis yang cepat, aman, dan 100% berjalan di browser. Kompres, ubah ukuran, dan konversi gambar secara instan."
-	/>
+	<title>{m.home_title()}</title>
+	<meta name="description" content={m.home_meta_desc()} />
 </svelte:head>
 
 <!-- Hero Section -->
@@ -61,19 +65,23 @@
 			<div
 				class="mb-6 inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700"
 			>
-				✨ Pemrosesan 100% di browser
+				{m.home_badge()}
 			</div>
 			<Text tag="h1" variant="headline" weight="bold" class="mb-6">
-				Edit gambar, <span class="text-blue-600">tanpa ribet.</span>
+				{m.home_headline_1()} <span class="text-blue-600">{m.home_headline_2()}</span>
 			</Text>
 			<Text tag="p" variant="body" class="mx-auto mb-10 max-w-2xl text-lg">
-				Pemrosesan gambar secepat kilat tanpa perlu mengunggah file ke server. Privasi Anda adalah
-				prioritas utama kami.
+				{m.home_desc()}
 			</Text>
 			<div class="flex flex-col justify-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-				<Button size="lg" onclick={() => (window.location.href = '#tools')}>Coba Sekarang</Button>
-				<Button variant="secondary" size="lg" onclick={() => (window.location.href = '#features')}
-					>Pelajari Lebih Lanjut</Button
+				<Button size="lg" onclick={() => (window.location.href = '#tools')}
+					>{m.home_try_now()}</Button
+				>
+				<Button
+					variant="secondary"
+					size="lg"
+					onclick={() => (window.location.href = '#features')}
+					>{m.home_learn_more()}</Button
 				>
 			</div>
 		</div>
@@ -95,13 +103,13 @@
 <section id="tools" class="bg-white py-24">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="mb-16 text-center">
-			<Text tag="h2" variant="headline" weight="bold" class="mb-4">Pilih Alat Anda</Text>
+			<Text tag="h2" variant="headline" weight="bold" class="mb-4">{m.home_tools_title()}</Text>
 			<Text tag="p" variant="body" class="mx-auto max-w-xl"
-				>Mulai mengolah gambar Anda dengan alat-alat profesional kami yang sederhana.</Text
+				>{m.home_tools_desc()}</Text
 			>
 		</div>
 
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
 			{#each tools as tool (tool.href)}
 				<a
 					href={i(tool.href)}
@@ -117,7 +125,7 @@
 					<Text tag="h3" variant="headline" weight="bold" class="mb-3">{tool.title}</Text>
 					<Text tag="p" variant="body" class="text-sm">{tool.description}</Text>
 					<div class="mt-6 flex items-center text-sm font-semibold text-blue-600">
-						Gunakan Alat
+						{m.home_tool_use()}
 						<svg
 							class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
 							fill="none"
@@ -166,17 +174,13 @@
 <!-- SEO Content -->
 <section class="border-t border-gray-100 bg-white py-24">
 	<div class="mx-auto prose max-w-4xl px-4 prose-blue sm:px-6 lg:px-8">
-		<Text tag="h2" variant="headline" weight="bold" class="mb-6">Tentang Imagera.id</Text>
+		<Text tag="h2" variant="headline" weight="bold" class="mb-6">{m.home_about_title()}</Text>
 		<p>
-			Imagera.id adalah platform pengolahan gambar modern yang dirancang untuk kecepatan dan
-			keamanan. Kami memahami bahwa mengunggah data pribadi ke server sering kali menimbulkan
-			kekhawatiran privasi. Itulah sebabnya kami mendevelop teknologi ini untuk berjalan 100% secara
-			lokal di browser Anda.
+			{m.home_about_p1()}
 		</p>
 		<p>
-			Baik Anda perlu mengompres foto untuk website, mengubah ukuran gambar untuk media sosial, atau
-			mengonversi format file, Imagera.id menawarkan pengalaman yang mulus tanpa perlu instalasi
-			aplikasi tambahan. Semuanya dapat diakses secara instan dari perangkat manapun.
+			{m.home_about_p2()}
 		</p>
 	</div>
 </section>
+

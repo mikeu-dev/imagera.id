@@ -38,13 +38,14 @@
 
 		processing = true;
 		try {
-			const blob = await compressImage(selectedFile, quality / 100);
+			// Reuse compressImage but with WebP format
+			const blob = await compressImage(selectedFile, quality / 100, 'image/webp');
 			resultBlob = blob;
 			resultSrc = URL.createObjectURL(blob);
-			toast.success(m.tool_result() + ' ' + m.nav_compress());
+			toast.success(m.tool_result() + ' WebP');
 		} catch (err) {
-			console.error('Compression failed:', err);
-			toast.error(m.compress_err());
+			console.error('WebP conversion failed:', err);
+			toast.error(m.webp_err());
 		} finally {
 			processing = false;
 		}
@@ -54,7 +55,7 @@
 		if (!resultBlob || !selectedFile) return;
 		const link = document.createElement('a');
 		link.href = resultSrc;
-		link.download = `compressed-${selectedFile.name.replace(/\.[^/.]+$/, '')}.jpg`;
+		link.download = `${selectedFile.name.replace(/\.[^/.]+$/, '')}.webp`;
 		link.click();
 	}
 
@@ -68,11 +69,11 @@
 </script>
 
 <svelte:head>
-	<title>{m.compress_title()}</title>
-	<meta name="description" content={m.compress_meta()} />
+	<title>{m.webp_title()}</title>
+	<meta name="description" content={m.webp_meta()} />
 </svelte:head>
 
-<ToolPageTemplate title={m.compress_heading()} description={m.compress_desc()}>
+<ToolPageTemplate title={m.webp_heading()} description={m.webp_desc()}>
 	{#snippet preview()}
 		<div class="space-y-6">
 			{#if !selectedFile}
@@ -86,8 +87,8 @@
 						<ImagePreview src={previewSrc} />
 					</div>
 					<div class="space-y-2">
-						<Text tag="span" variant="muted" class="text-xs font-bold text-blue-600 uppercase"
-							>{m.tool_result()}</Text
+						<Text tag="span" variant="muted" class="text-xs font-bold text-amber-600 uppercase"
+							>{m.tool_result()} (WebP)</Text
 						>
 						<ImagePreview src={resultSrc} loading={processing} />
 					</div>
@@ -105,14 +106,14 @@
 			hasResult={!!resultBlob}
 		>
 			<Slider
-				label={m.compress_quality()}
+				label={m.webp_quality()}
 				bind:value={quality}
 				min={1}
 				max={100}
 				disabled={!selectedFile || processing}
 			/>
 			<Text tag="p" variant="muted" class="text-xs italic">
-				{m.compress_note()}
+				{m.webp_note()}
 			</Text>
 		</ToolControls>
 	{/snippet}
@@ -124,14 +125,14 @@
 	{/snippet}
 
 	{#snippet seoText()}
-		<Text tag="h3" variant="headline" weight="bold">{m.compress_seo_title()}</Text>
+		<Text tag="h3" variant="headline" weight="bold">{m.webp_seo_title()}</Text>
 		<p>
-			{m.compress_seo_p1()}
+			{m.webp_seo_p1()}
 		</p>
 		<ul>
-			<li><strong>{m.compress_seo_li1_label()}</strong>{m.compress_seo_li1_desc()}</li>
-			<li><strong>{m.compress_seo_li2_label()}</strong>{m.compress_seo_li2_desc()}</li>
-			<li><strong>{m.compress_seo_li3_label()}</strong>{m.compress_seo_li3_desc()}</li>
+			<li><strong>{m.webp_seo_li1_label()}</strong>{m.webp_seo_li1_desc()}</li>
+			<li><strong>{m.webp_seo_li2_label()}</strong>{m.webp_seo_li2_desc()}</li>
+			<li><strong>{m.webp_seo_li3_label()}</strong>{m.webp_seo_li3_desc()}</li>
 		</ul>
 	{/snippet}
 </ToolPageTemplate>

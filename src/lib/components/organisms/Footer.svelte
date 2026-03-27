@@ -1,12 +1,14 @@
-<script>
+<script lang="ts">
 	import Text from '../atoms/Text.svelte';
+	import { localizeHref as i } from '$lib/paraglide/runtime';
+	import * as m from '$lib/paraglide/messages';
 </script>
 
 <footer class="border-t border-gray-100 bg-gray-50 py-12">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="grid grid-cols-1 gap-12 md:grid-cols-4">
 			<div class="col-span-2 space-y-4">
-				<a href="/" class="flex items-center space-x-2">
+				<a href={i('/')} class="flex items-center space-x-2">
 					<div
 						class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 shadow-md shadow-blue-200"
 					>
@@ -32,51 +34,51 @@
 					</Text>
 				</a>
 				<Text tag="p" variant="body" class="max-w-xs">
-					Solusi pengolahan gambar cepat, aman, dan 100% di browser Anda. Tanpa server, tanpa
-					kompromi privasi.
+					{m.footer_desc()}
 				</Text>
 			</div>
 
 			<div>
-				<Text tag="h4" variant="headline" weight="bold" class="mb-4">Peralatannya</Text>
+				<Text tag="h4" variant="headline" weight="bold" class="mb-4">{m.footer_products()}</Text>
 				<ul class="space-y-2">
 					<li>
 						<a
-							href="/compress-image"
-							class="text-sm text-gray-500 transition-colors hover:text-blue-600">Kompres Gambar</a
+							href={i('/compress-image')}
+							class="text-sm text-gray-500 transition-colors hover:text-blue-600">{m.nav_compress()}</a
 						>
 					</li>
 					<li>
 						<a
-							href="/resize-image"
-							class="text-sm text-gray-500 transition-colors hover:text-blue-600">Ubah Ukuran</a
+							href={i('/resize-image')}
+							class="text-sm text-gray-500 transition-colors hover:text-blue-600">{m.nav_resize()}</a
 						>
 					</li>
 					<li>
 						<a
-							href="/png-to-jpg"
-							class="text-sm text-gray-500 transition-colors hover:text-blue-600">PNG ke JPG</a
+							href={i('/png-to-jpg')}
+							class="text-sm text-gray-500 transition-colors hover:text-blue-600">{m.nav_png_to_jpg()}</a
+						>
+					</li>
+					<li>
+						<a
+							href={i('/webp-converter')}
+							class="text-sm text-gray-500 transition-colors hover:text-blue-600">{m.nav_webp_converter()}</a
 						>
 					</li>
 				</ul>
 			</div>
 
 			<div>
-				<Text tag="h4" variant="headline" weight="bold" class="mb-4">Informasi</Text>
+				<Text tag="h4" variant="headline" weight="bold" class="mb-4">{m.footer_legal()}</Text>
 				<ul class="space-y-2">
 					<li>
-						<a href="/" class="text-sm text-gray-500 transition-colors hover:text-blue-600"
-							>Tentang Kami</a
+						<a href={i('/')} class="text-sm text-gray-500 transition-colors hover:text-blue-600"
+							>{m.footer_privacy()}</a
 						>
 					</li>
 					<li>
-						<a href="/" class="text-sm text-gray-500 transition-colors hover:text-blue-600"
-							>Kebijakan Privasi</a
-						>
-					</li>
-					<li>
-						<a href="/" class="text-sm text-gray-500 transition-colors hover:text-blue-600"
-							>Syarat Penggunaan</a
+						<a href={i('/')} class="text-sm text-gray-500 transition-colors hover:text-blue-600"
+							>{m.footer_terms()}</a
 						>
 					</li>
 				</ul>
@@ -87,16 +89,16 @@
 			class="mt-12 flex flex-col items-center justify-between space-y-4 border-t border-gray-200 pt-8 text-sm text-gray-400 md:flex-row md:space-y-0"
 		>
 			<p>
-				&copy; {new Date().getFullYear()} Imagera.id - Dibuat dengan &hearts; untuk privasi Anda.
+				{m.footer_copyright()}
 			</p>
 			<div class="flex space-x-6">
-				<a href="/" class="transition-colors hover:text-blue-600" aria-label="Ikuti kami di Twitter"
+				<a href="/" class="transition-colors hover:text-blue-600" aria-label="Twitter"
 					>Twitter</a
 				>
 				<a
-					href="/"
+					href="https://github.com/mikeu-dev/imagera.id"
 					class="transition-colors hover:text-blue-600"
-					aria-label="Lihat repositori GitHub">GitHub</a
+					aria-label="GitHub">GitHub</a
 				>
 			</div>
 		</div>
